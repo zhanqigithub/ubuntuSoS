@@ -83,4 +83,6 @@ sudo su
 	"install_acrn_makeinstall":"false",
         
 	"auto_reboot":"true"----------------------------do you need reboot?
+	
+3. python3 main_start.py
         
