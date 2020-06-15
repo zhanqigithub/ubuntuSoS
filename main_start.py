@@ -120,7 +120,11 @@ def build_acrn():
 
 	if os.path.exists('acrn-kernel'):
 		os.system('rm -rf acrn-kernel')
+
 	os.system('git clone %s' % load_dict['sos_kernel_repo'])
+
+	cmd = 'cd acrn-kernel' + "&&" +'git checkout -b mybranch %s'% load_dict['release_version']
+	os.system(cmd)
 	# build kernel
 	cmd = 'cd acrn-kernel' + "&&" +'cp kernel_config_uefi_sos .config'
 	os.system(cmd)
