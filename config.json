@@ -14,7 +14,7 @@
 	"//":" install compile pakage",
 	"in_docker":"false",
 	"in_native_ubuntu":"true",
-	"install_package":"false",
+	"install_package":"true",
 	"gcc_version":"7.3.0",
 	"binutils":"2.27",
 	"acrn_repo":"https://github.com/projectacrn/acrn-hypervisor.git",
