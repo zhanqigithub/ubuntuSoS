@@ -40,7 +40,7 @@ sudo su
         
 	"in_native_ubuntu":"true",-----------------------are you in native ubuntu?
         
-	"install_package":"false",------------------------do you need install compile related package
+	"install_package":"true",------------------------do you need install compile related package
         
 	"gcc_version":"7.3.0",
         
