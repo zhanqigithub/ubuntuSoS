@@ -10,6 +10,12 @@ sudo su
 
 2. config json file according to your needs
 
+please update this item in json "build_source_cmd":"make all BOARD_FILE=misc/acrn-config/xmls/board-xmls/whl-ipc-i5.xml SCENARIO_FILE=misc/acrn-config/xmls/config-xmls/whl-ipc-i5/industry.xml RELEASE=0"
+
+3. python3 main_start.py
+
+PS: details in json
+
 	"//" :"basic information",
         
 	"username":"root",
@@ -84,5 +90,5 @@ sudo su
         
 	"auto_reboot":"true"----------------------------do you need reboot?
 	
-3. python3 main_start.py
+
         
