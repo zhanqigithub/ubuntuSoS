@@ -1,5 +1,5 @@
 # ubuntuSoS
-for ACRN quick start from ubuntu
+for ACRN quick start from ubuntu,default nvme, for sata user, please update manually
 1. ubuntu native 18.04
 
 install python3
