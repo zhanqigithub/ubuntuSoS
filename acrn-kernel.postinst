@@ -1,0 +1,27 @@
+#!/bin/bash
+# postinst script for acrn kernel
+set -e
+
+case "$1" in
+    configure)
+
+    filename="/etc/grub.d/40_custom"
+    sed -i '/module/d' ${filename}
+    bzImage=$(cat /boot/version.txt)
+    sed -i '/multiboot2/a\module2 /boot/'${bzImage}' Linux_bzImage' ${filename}
+	sync
+	update-grub
+
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+
+exit 0
