@@ -88,6 +88,7 @@ def install_compile_package():
      libblkid-dev \
      e2fslibs-dev \
      pkg-config \
+     libelf-dev\
      libnuma-dev -y')
 	gcc_version_out = os.popen('gcc --version')
 	gcc_version = gcc_version_out.read()
@@ -184,6 +185,9 @@ def create_acrn_deb():
 	os.system('rm -rf boot')
 
 
+	os.system('cp acrn-hypervisor.postinst acrn_deb/DEBIAN/postinst' )
+	os.system('chmod +x acrn_deb/DEBIAN/postinst')
+	os.system('sed -i \'s/\r//\' acrn_deb/DEBIAN/postinst')
 	os.system('dpkg -b acrn_deb acrn_deb_package.deb ')
 
 
@@ -269,8 +273,18 @@ def create_acrn_kernel_deb():
 	os.system(cmd)
 
 
-	#cmd = 'cd acrn_kernel_deb/boot' + '&&' + 'mv %s bzImage' %bzimgname
-	#os.system(cmd)
+	cmd = 'cd acrn_kernel_deb/boot' + '&&' + 'ls vmlinuz*'
+	version = os.popen(cmd)
+
+	f = open("acrn_kernel_deb/boot/version.txt",'w')
+	f.write(version.read())
+	f.close()
+
+	os.system('cp acrn-kernel.postinst acrn_kernel_deb/DEBIAN/postinst' )
+
+	os.system('chmod +x acrn_kernel_deb/DEBIAN/postinst')
+
+	os.system('sed -i \'s/\r//\' acrn_kernel_deb/DEBIAN/postinst')
 
 	os.system('rm acrn_kernel_deb/%s' % filename)
 
