@@ -6,7 +6,7 @@ case "$1" in
     configure)
 
     filename="/etc/grub.d/40_custom"
-    sed -i '/module/d' ${filename}
+    sed -i '/module/d' ${filename} || true
     bzImage=$(cat /boot/version.txt)
     sed -i '/multiboot2/a\module2 /boot/'${bzImage}' Linux_bzImage' ${filename}
 	sync

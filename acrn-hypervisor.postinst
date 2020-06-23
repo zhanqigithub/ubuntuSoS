@@ -3,7 +3,7 @@
 set -e
 
 
-echo "please choose <scenario> ,<board> ,<version>"
+echo "please choose <scenario> ,<board> ,<disk type>"
 
 echo "Senario is ->
         1. industry
@@ -47,17 +47,49 @@ echo "Your acrn bin is ->"
 echo $ACRNBIN
 
 
-str=$(blkid |grep -v EFI |grep UUID |grep nvme |grep -v PTUUID)
+echo "disk type is ->
+        1. nvme
+        2. sda"
+read num3
+
+if [[ $num3 -eq 1 ]]
+then
+        echo "disk type is nvme"
+        type="nvme"
+elif [[ $num3 -eq 2 ]]
+then
+        echo "disk type is sda"
+        type="sda"
+fi
+
+echo "disk type is ->
+        1. nvme
+        2. sda"
+read num3
+
+if [[ $num3 -eq 1 ]]
+then
+        echo "disk type is nvme"
+        type="nvme"
+elif [[ $num3 -eq 2 ]]
+then
+        echo "disk type is sda"
+        type="sda"
+fi
+
+
+str=$(blkid |grep ext4 |grep ${type})
 
 uuid=$(echo $str |cut -d " " -f 2|cut -d "=" -f 2)
 
-str=$(blkid |grep -v EFI |grep UUID |grep nvme |grep -v PTUUID)
+str=$(blkid |grep ext4 |grep ${type})
 
 partuuid=$(echo ${str##*PARTUUID=})
 
 filename="/etc/grub.d/40_custom"
 
-kernelimg=$(grep module ${filename})
+kernelimg=$(grep module ${filename}|| true)
+
 
 cat>"${filename}"<<EOF
 #!/bin/sh
