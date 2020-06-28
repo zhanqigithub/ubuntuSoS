@@ -9,7 +9,9 @@ config proxy
 sudo su
 
 2. config json file according to your needs, please change config.json,default as below
+
 {
+	
 	"install_package":"true",----------------->if your native ubuntu not install related package for conpile please set as true,if already install, set to false
 	
 	"gcc_version":"7.3.0",------------>gcc version should higher than this,no need change
