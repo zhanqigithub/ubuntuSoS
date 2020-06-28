@@ -62,21 +62,6 @@ then
         type="sda"
 fi
 
-echo "disk type is ->
-        1. nvme
-        2. sda"
-read num3
-
-if [[ $num3 -eq 1 ]]
-then
-        echo "disk type is nvme"
-        type="nvme"
-elif [[ $num3 -eq 2 ]]
-then
-        echo "disk type is sda"
-        type="sda"
-fi
-
 
 str=$(blkid |grep ext4 |grep ${type})
 
@@ -102,7 +87,7 @@ menuentry 'ACRN ' --id ACRN {
     search --no-floppy --fs-uuid  --set $uuid
 echo \$root
 echo 'loading ACRN...'
-multiboot2 $ACRNBIN root=PARTUUID=$partuuid
+multiboot2 $ACRNBIN root=PARTUUID=$partuuid i915.modeset=0 video=efifb:off
 $kernelimg
 
 }

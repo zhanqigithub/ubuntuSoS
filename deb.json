@@ -3,6 +3,10 @@
 			"source":"acrn-hypervisor/build/hypervisor/acrn.bin",
 			"target":"boot"
 			},
+"iasl":{
+			"source":"iasl",
+			"target":"usr/sbin"
+			},
 "acrnctl":{
 			"source":"acrn-hypervisor/build/misc/tools/acrnctl",
 			"target":"usr/bin"
@@ -41,11 +45,11 @@
 			},
 "acrn.32.out":{
 			"source":"acrn-hypervisor/build/hypervisor/acrn.32.out",
-			"target":"usr/lib/acrn"
+			"target":"boot"
 			},
 "acrn.efi":{
 			"source":"acrn-hypervisor/build/hypervisor/acrn.efi",
-			"target":"usr/lib/acrn"
+			"target":"boot"
 			},
 "50-acrn.netdev":{
 			"source":"50-acrn.netdev",

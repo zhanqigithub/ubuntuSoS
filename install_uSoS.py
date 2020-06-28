@@ -4,9 +4,11 @@ import subprocess
 import datetime
 import time
 
-from main_start import install_compile_package
-from main_start import create_acrn_kernel_deb
-from main_start import change_grub
+from USoS_lib import install_compile_package
+from USoS_lib import create_acrn_kernel_deb
+from USoS_lib import install_acrn_deb
+from USoS_lib import install_acrn_kernel_deb
+from USoS_lib import build_acrn_kernel
 
 #parse json file
 with open("release.json","r") as load_f:
@@ -72,26 +74,7 @@ def build_acrn():
 				cmd = 'cp %s acrn_release_img/%s' %(load_dictdeb['acrn.efi']['source'],efi_name)
 				os.system(cmd)
 
-
-	if os.path.exists('acrn-kernel'):
-		os.system('rm -rf acrn-kernel')
-
-	os.system('git clone %s' % load_dict['sos_kernel_repo'])
-
-	cmd = 'cd acrn-kernel' + "&&" +'git checkout -b mybranch %s'% load_dict['release_version']
-	os.system(cmd)
-	# build kernel
-	cmd = 'cd acrn-kernel' + "&&" +'cp kernel_config_uefi_sos .config'
-	os.system(cmd)
-
-	cmd = 'cd acrn-kernel' + "&&" +'make olddefconfig'
-	os.system(cmd)
-
-	cmd = 'cd acrn-kernel' + "&&" +'make targz-pkg'
-	os.system(cmd)
-
-
-
+	build_acrn_kernel(load_dict['sos_kernel_repo'],load_dict['release_version'])
 
 def create_release_deb():
 
@@ -150,11 +133,6 @@ def create_release_deb():
 
 	create_acrn_kernel_deb()
 
-def install_release_deb():
-	os.system('dpkg -r acrn-kernel-package ')
-	os.system('dpkg -i acrn_kernel_deb_package.deb ')
-	os.system('dpkg -r acrn-package')
-	os.system('dpkg -i acrn_deb_package.deb ')
 
 def install_process():
 	if load_dict['build_acrn'] == 'true':
@@ -167,6 +145,7 @@ def install_process():
 
 	if load_dict['install_acrn_deb'] == 'true':
 		print('start install acrn release deb')
-		install_release_deb()
+		install_acrn_deb()
+		install_acrn_kernel_deb()
 if __name__ == "__main__":
 		install_process()

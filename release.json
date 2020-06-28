@@ -21,6 +21,5 @@
 		},
 		"release":"0"
 	},
-	"install_acrn_deb":"true",
-	"auto_reboot":"true"
+	"install_acrn_deb":"true"
 }
