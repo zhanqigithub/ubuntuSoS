@@ -5,7 +5,7 @@
 	"acrn_repo":"https://github.com/projectacrn/acrn-hypervisor.git",
 	"release_version":"remotes/origin/release_2.0",
 	"sos_kernel_repo":"https://github.com/projectacrn/acrn-kernel.git",
-	"build_acrn":"false",
+	"build_acrn":"true",
 	"build_source_cmd":"make all BOARD_FILE=misc/acrn-config/xmls/board-xmls/whl-ipc-i5.xml SCENARIO_FILE=misc/acrn-config/xmls/config-xmls/whl-ipc-i5/industry.xml RELEASE=0",
 	"build_acrn_kernel":"true",
 	"acrn_deb_package":"true",
