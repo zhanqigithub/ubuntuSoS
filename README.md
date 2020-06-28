@@ -44,14 +44,23 @@ sudo su
 
 3. python3 main_start.py
 after all finished,below two item could find
+
 acrn_deb_package.deb
+
 acrn_kernel_deb_package.deb
 
+
 uninstall
+
 dpkg -r acrn-package
+
 dpkg -r acrn-kernel-package
 
+
 install
+
 dpkg -i acrn_kernel_deb_package.deb
+
 dpkg -i acrn_deb_package.deb
+
 
