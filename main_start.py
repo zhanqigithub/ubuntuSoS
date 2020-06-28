@@ -107,12 +107,19 @@ def main_process():
 
 	else:
 		print('You decide NOT build ACRN kernel')
-	#create deb
+	#create acrn deb
 	if load_dict['acrn_deb_package'] == 'true':
 		print('start create ACRN deb package')
 		create_acrn_deb()
 	else:
 		print('You decide NOT create ACRN deb')
+
+	#create acrn kernel deb
+	if load_dict['acrn_kernel_deb_package'] == 'true':
+		print('start create ACRN kernel deb package')
+		create_acrn_kernel_deb()
+	else:
+		print('You decide NOT create ACRN kernel deb')
 
 	#install deb
 	if load_dict['install_acrn_deb'] == 'true':
@@ -121,14 +128,7 @@ def main_process():
 
 	else:
 		print('You decide NOT install ACRN through deb')
-	#create deb
-	if load_dict['acrn_kernel_deb_package'] == 'true':
-		print('start create ACRN kernel deb package')
-		create_acrn_kernel_deb()
-	else:
-		print('You decide NOT create ACRN kernel deb')
 
-	#install deb
 	if load_dict['install_acrn_kernel_deb'] == 'true':
 		print('start install through acrn kernel deb package')
 		install_acrn_kernel_deb()
