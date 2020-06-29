@@ -127,7 +127,7 @@ sudo su
 	
 }
 
-3. python3 main_start.py
+3. python3 install_uSoS.py
 after all finished,below two item could find
 
 acrn_deb_package.deb
