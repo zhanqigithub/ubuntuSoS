@@ -77,7 +77,7 @@ def create_acrn_deb():
 	os.system('rm -rf boot')
 
 
-	os.system('cp acrn-hypervisor.postinst acrn_deb/DEBIAN/postinst' )
+	os.system('cp acrn-hypervisor-eb.postinst acrn_deb/DEBIAN/postinst' )
 	os.system('chmod +x acrn_deb/DEBIAN/postinst')
 	os.system('sed -i \'s/\r//\' acrn_deb/DEBIAN/postinst')
 	os.system('dpkg -b acrn_deb acrn_deb_package.deb ')
