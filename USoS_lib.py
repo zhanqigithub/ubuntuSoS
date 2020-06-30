@@ -4,6 +4,11 @@ import subprocess
 import datetime
 import time
 
+#parse json file
+with open("config.json","r") as load_f:
+	load_dict = json.load(load_f)
+	print(load_dict)
+load_f.close()
 #create acrn deb
 
 def create_acrn_kernel_deb():
