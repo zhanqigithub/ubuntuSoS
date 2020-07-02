@@ -17,13 +17,14 @@ load_f.close()
 
 # build acrn
 def build_acrn():
+	if not os.path.exists('acrn-hypervisor'):
+		cmd = 'git clone %s' % load_dict['acrn_repo']
+		os.system(cmd)
+		cmd = 'cd acrn-hypervisor' + "&&" +'git checkout -b mybranch %s'% load_dict['release_version']
+		os.system(cmd)
 	if os.path.exists('acrn-hypervisor'):
-		os.system('rm -rf acrn-hypervisor')
-
-	cmd = 'git clone %s' % load_dict['acrn_repo']
-	os.system(cmd)
-	cmd = 'cd acrn-hypervisor' + "&&" +'git checkout -b mybranch %s'% load_dict['release_version']
-	os.system(cmd)
+		cmd = 'cd acrn-hypervisor' + "&&" +'make clean'
+		os.system(cmd)
 
 	# industry
 	cmd = 'cd acrn-hypervisor' + "&&" +'%s'% load_dict['build_source_cmd']

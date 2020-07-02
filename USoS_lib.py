@@ -59,13 +59,16 @@ def create_acrn_kernel_deb():
 	os.system('dpkg -b acrn_kernel_deb acrn_kernel_deb_package.deb ')
 
 def build_acrn_kernel(acrn_repo,acrn_version):
+	if not os.path.exists('acrn-kernel'):
+
+		os.system('git clone %s' % acrn_repo)
+
+		cmd = 'cd acrn-kernel' + "&&" +'git checkout -b mybranch %s'% acrn_version
+		os.system(cmd)
+
 	if os.path.exists('acrn-kernel'):
-		os.system('rm -rf acrn-kernel')
-
-	os.system('git clone %s' % acrn_repo)
-
-	cmd = 'cd acrn-kernel' + "&&" +'git checkout -b mybranch %s'% acrn_version
-	os.system(cmd)
+		cmd = 'cd acrn-kernel' + "&&" +'make clean'
+		os.system(cmd)
 	# build kernel
 	cmd = 'cd acrn-kernel' + "&&" +'cp kernel_config_uefi_sos .config'
 	os.system(cmd)
