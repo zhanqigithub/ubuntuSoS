@@ -1,5 +1,4 @@
 # ubuntuSoS
-# ubuntuSoS
 this scripts show how to build acrn-hypervisor and acrn-kernel deb package
 
 1. setup native ubuntu
