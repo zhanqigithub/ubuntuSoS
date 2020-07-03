@@ -2,13 +2,19 @@
 this scripts show how to build acrn-hypervisor and acrn-kernel deb package
 
 1. setup native ubuntu
+
 install python3
+
 config proxy
+
 sudo su
+
 
 2. config json file
 
+
 {
+
 	"//":"release ubuntu as sos verion",
 
 	"install_package":"true",---------->this 1st time should set to true if you did not install acrn related compile package, if already install,set to false
@@ -83,15 +89,26 @@ sudo su
 	"auto_reboot":"false"---------->if you need ireboot
 
 }
+
 3.pythons install_uSoS.py
+
 after finished , will get below two item
+
 acrn_deb_package.deb
+
 acrn_kernel_deb_package.deb
 
+
 install command
+
 dpkg -i acrn_deb_package.deb
+
 dpkg -i acrn_kernel_deb_package.deb
 
+
 uninstall
+
 dpkg -r acrn-package
+
 dpkg -r acrn-kernel-package
+
