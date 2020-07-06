@@ -64,7 +64,8 @@ def build_acrn():
 		cmd = 'cd acrn-hypervisor' + "&&" +'git checkout -b mybranch %s'% load_dict['release_version']
 		os.system(cmd)
 
-	# industry
+	cmd = 'cd acrn-hypervisor' + "&&" +'make clean'
+	os.system(cmd)
 
 	make_cmd_list =[]
 
