@@ -9,6 +9,16 @@ case "$1" in
     sed -i '/module/d' ${filename} || true
     bzImage=$(cat /boot/version.txt)
     sed -i '/multiboot2/a\module2 /boot/'${bzImage}' Linux_bzImage' ${filename}
+
+    str=$(grep hvlog=2M@0xE00000 ${filename} || true)
+
+    old=$(echo $str |cut -d ' ' -f 2)
+    echo linux $old
+    bzImage=$(cat /boot/version.txt)
+    new=$(echo linux \/boot\/${bzImage})
+    echo $new
+    sed -i 's/linux \$(old)/\$(new)/' ${filename}
+
 	sync
 	update-grub
 

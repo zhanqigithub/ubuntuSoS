@@ -74,21 +74,36 @@ partuuid=$(echo ${str##*PARTUUID=})
 filename="/etc/grub.d/40_custom"
 
 kernelimg=$(grep module ${filename}|| true)
+kernelimg2='/boot/'
 
+if [ "$kernelimg" ]
+then
+    kernelimg2=$(echo $kernelimg |cut -d ' ' -f 2)
+fi
 
 cat>"${filename}"<<EOF
 #!/bin/sh
 exec tail -n +3 \$0
-menuentry 'ACRN ' --id ACRN {
+menuentry 'ACRN multiboot2 ' --id ACRN_multiboot2 {
     load_video
     insmod gzio
     insmod part_gpt
     insmod ext2
     search --no-floppy --fs-uuid  --set $uuid
 echo \$root
-echo 'loading ACRN...'
+echo 'loading ACRN_multiboot2...'
 multiboot2 $ACRNBIN root=PARTUUID=$partuuid i915.modeset=0 video=efifb:off
 $kernelimg
+
+}
+
+menuentry 'ACRN efi' --id ACRN_efi {
+    recordfail
+    load_video
+    insmod gzio
+    insmod part_gpt
+    insmod ext2
+    linux $kernelimg2 pci_devices_ignore=(0:18:1) console=tty0 console=ttyS0 root=PARTUUID=$partuuid rw rootwait ignore_loglevel no_timer_check consoleblank=0 i915.nuclear_pageflip=1 i915.avail_planes_per_pipe=0x01010F i915.domain_plane_owners=0x011111110000 i915.enable_gvt=1 i915.enable_guc=0 hvlog=2M@0xE00000
 
 }
 EOF
@@ -97,8 +112,8 @@ filename='/etc/default/grub'
 sed -i '/GRUB_DEFAULT/d' ${filename}
 sed -i '/GRUB_TIMEOUT/d' ${filename}
 sed -i '/GRUB_HIDDEN_TIMEOUT/d' ${filename}
-sed -i '$a GRUB_DEFAULT=ACRN' ${filename}
-sed -i '$a GRUB_TIMEOUT=10' ${filename}
+sed -i '$a GRUB_DEFAULT=ACRN_multiboot2' ${filename}
+sed -i '$a GRUB_TIMEOUT=20' ${filename}
 
 sync
 update-grub

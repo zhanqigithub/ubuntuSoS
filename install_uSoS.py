@@ -57,7 +57,8 @@ def build_acrn():
 	os.system('mkdir -p acrn_release_img')
 
 	if load_dict['sync_acrn_code'] == 'true':
-		os.system('rm -rf acrn-hypervisor')
+		if os.path.exists('acrn-hypervisor'):
+			os.system('rm -rf acrn-hypervisor')
 		cmd = 'git clone %s' % load_dict['acrn_repo']
 		os.system(cmd)
 		cmd = 'cd acrn-hypervisor' + "&&" +'git checkout -b mybranch %s'% load_dict['release_version']
@@ -151,6 +152,8 @@ def create_acrn_kernel_deb():
 
 def build_acrn_kernel(acrn_repo,acrn_version):
 	if load_dict['sync_acrn_kernel_code'] == 'true':
+		if os.path.exists('acrn-kernel'):
+			os.system('rm -rf acrn-kernel')
 
 		os.system('git clone %s' % acrn_repo)
 
