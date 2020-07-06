@@ -3,10 +3,6 @@
 			"source":"acrn-hypervisor/build/hypervisor/acrn.bin",
 			"target":"boot"
 			},
-"iasl":{
-			"source":"iasl",
-			"target":"usr/sbin"
-			},
 "acrnctl":{
 			"source":"acrn-hypervisor/build/misc/tools/acrnctl",
 			"target":"usr/bin"
