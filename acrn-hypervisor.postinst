@@ -84,20 +84,18 @@ fi
 cat>"${filename}"<<EOF
 #!/bin/sh
 exec tail -n +3 \$0
-menuentry 'ACRN multiboot2 ' --id ACRN_multiboot2 {
+menuentry 'ACRN multiboot2 ' --id ACRN_deb_multiboot2 {
     load_video
     insmod gzio
     insmod part_gpt
     insmod ext2
     search --no-floppy --fs-uuid  --set $uuid
-echo \$root
-echo 'loading ACRN_multiboot2...'
 multiboot2 $ACRNBIN root=PARTUUID=$partuuid i915.modeset=0 video=efifb:off
 $kernelimg
 
 }
 
-menuentry 'ACRN efi' --id ACRN_efi {
+menuentry 'ACRN efi' --id ACRN_deb_efi {
     recordfail
     load_video
     insmod gzio

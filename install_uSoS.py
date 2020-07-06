@@ -230,7 +230,7 @@ def create_acrn_deb():
 	os.system('rm -rf usr')
 
 	os.system('mkdir -p acrn_release_deb/boot')
-	cmd = "mv acrn_release_img/acrn.* acrn_release_deb/boot"
+	cmd = "cp acrn_release_img/acrn.* acrn_release_deb/boot"
 	os.system(cmd)
 
 
