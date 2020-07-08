@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#* Copyright (c) 2020 Intel Corporation
 import os,sys,copy,json
 import subprocess
 import datetime
