@@ -114,4 +114,4 @@ dpkg -r acrn-kernel-package
 
 4.python3 compile_iasl.py
 
-this scriptrs is help compile iasl and cp to /usr/bin
+this scriptrs is help compile iasl and cp to /usr/sbin
