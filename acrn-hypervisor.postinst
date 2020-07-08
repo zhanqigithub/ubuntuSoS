@@ -111,7 +111,7 @@ filename='/etc/default/grub'
 sed -i '/GRUB_DEFAULT/d' ${filename}
 sed -i '/GRUB_TIMEOUT/d' ${filename}
 sed -i '/GRUB_HIDDEN_TIMEOUT/d' ${filename}
-sed -i '$a GRUB_DEFAULT=ACRN_multiboot2' ${filename}
+sed -i '$a GRUB_DEFAULT=ACRN_deb_multiboot2' ${filename}
 sed -i '$a GRUB_TIMEOUT=20' ${filename}
 
 sync
